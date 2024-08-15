@@ -89,8 +89,3 @@ class BouncedPacket(ClientBoundPacketBase):
         if isinstance(self.tags, list) and ConnectPacket.TAG_DEATHLINK in self.tags:
             self.handle_deathlink(client)
             return
-
-        if isinstance(self.slots, List) and client.slot in self.slots: # likely to be a bounced packet from this slot.
-            datatypes = self.data.get("types", [])
-            if "fishing" in datatypes:
-                self.handle_fishing_collection(client, 'request' in datatypes)
